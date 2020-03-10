@@ -14,6 +14,11 @@
   - [2.2 Compound Types](#compound-types)
     - [2.2.1 Tuple Type](#tuple-type)
     - [2.2.2 Array Type](#array-type)
+- [3 Functions](#functions)
+  - [3.1 Function bodies have Statements and Expressions](#function-bodies-have-statements-and-expressions)
+    - [3.1.1 Statements](#statements)
+    - [3.1.2 Expressions](#expressions)
+  - [3.2 Functions with return values](#functions-with-return-values)
 
 ## Variables and Mutability
 
@@ -198,3 +203,56 @@ If you want to create an array that contains the same value for each element, yo
 ###### Invalid Array element access
 
 If you access an invalid index in element, it will end up in a `runtime error`.
+
+## Functions
+
+In function signatures, you must declare the type of each parameter. This is a deliberate decision in Rust’s design: requiring type annotations in function definitions means the compiler almost never needs you to use them elsewhere in the code to figure out what you mean.
+
+#### Function bodies have Statements and Expressions
+
+Function bodies are made up of a series of statements optionally ending in an expression.**Rust is an expression-based language**, this is an important distinction to understand. Other languages don’t have the same distinctions, so let’s look at what `statements` and `expressions` are and how their differences affect the bodies of functions.
+
+##### Statements
+
+`Statements are instructions that perform some action and do not return a value.`
+Creating a variable and assigning a value to it with the let keyword is a statement. `let y = 6;` is a statement.
+Function definitions are also statements; the entire preceding example is a statement in itself.
+Statements do not return values. Therefore, you can’t assign a let statement to another variable, as the following code tries to do; you’ll get an error:
+
+```rust
+let x = (let y = 6);
+```
+
+##### Expressions
+
+`Expressions evaluate to a resulting value.`
+Expressions evaluate to something and make up most of the rest of the code that you’ll write in Rust. Consider a simple math operation, such as `5 + 6`, which is an expression that evaluates to the value `11`. **Expressions can be part of statements:** . The `6` in the statement `let y = 6;` is an expression that evaluates to the value `6`. `Calling a function is an expression`. `Calling a macro is an expression`. `The block that we use to create new scopes, {}, is an expression`, for example:
+
+```rust
+fn main() {
+    let x = 5;
+
+    let y = {
+        let x = 3;
+        x + 1
+    };
+
+    println!("The value of y is: {}", y);
+}
+```
+
+This expression:
+
+```
+{
+    let x = 3;
+    x + 1
+}
+```
+
+`Expressions do not include ending semicolons. If you add a semicolon to the end of an expression, you turn it into a statement, which will then not return a value.`
+
+#### Functions with return values
+
+Functions can return values to the code that calls them. We don’t name return values, but we do declare their type after an `arrow (->)`.
+You can return early from a function by using the `return` keyword and specifying a value, but most functions return the last expression implicitly.

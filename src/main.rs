@@ -2,12 +2,16 @@ fn main() {
     println!("\n\n****************Variables and Mutability*******************\n");
     variables();
     shadowed_variables();
-    println!("\n\n****************Data Types*******************\n");
 
+    println!("\n\n****************Data Types*******************\n");
     change_same_var_type();
     floating_points();
     tuple_types();
     array_types();
+
+    println!("\n\n****************Functions*******************\n");
+    let sum = add_five(32);
+    println!("I added five: {}", sum);
 }
 
 fn variables() {
@@ -63,4 +67,8 @@ fn array_types() {
         "First and second element of array are {} and {}:",
         first, second
     );
+}
+
+fn add_five(a: i32) -> i32 {
+    a + 5
 }
