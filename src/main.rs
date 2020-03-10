@@ -12,6 +12,13 @@ fn main() {
     println!("\n\n****************Functions*******************\n");
     let sum = add_five(32);
     println!("I added five: {}", sum);
+
+    println!("\n\n****************Control Flow*******************\n");
+    condition_if();
+    loop_that_returns_value();
+    while_loop();
+    for_loop();
+    range_in_for_loop();
 }
 
 fn variables() {
@@ -71,4 +78,58 @@ fn array_types() {
 
 fn add_five(a: i32) -> i32 {
     a + 5
+}
+
+fn condition_if() {
+    let x = 5;
+
+    if x < 7 {
+        println!("Condition is true")
+    } else {
+        println!("Condition is false")
+    }
+}
+
+fn loop_that_returns_value() {
+    let mut counter = 0;
+
+    let result = loop {
+        counter += 1;
+
+        if counter == 10 {
+            break counter * 2;
+        }
+    };
+
+    println!(
+        "Loop that returns a value and acts as an expression: {}",
+        result
+    );
+}
+
+fn while_loop() {
+    let mut number = 3;
+
+    while number != 0 {
+        println!("Countdown: {}", number);
+        number -= 1;
+    }
+
+    println!("LIFTOFF")
+}
+
+fn for_loop() {
+    let a = [10, 20, 30, 40, 50];
+
+    for element in a.iter() {
+        println!("the value is: {}", element);
+    }
+}
+
+fn range_in_for_loop() {
+    for number in (1..4).rev() {
+        println!("{}!", number);
+    }
+
+    println!("LIFTOFF");
 }

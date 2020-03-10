@@ -19,6 +19,13 @@
     - [3.1.1 Statements](#statements)
     - [3.1.2 Expressions](#expressions)
   - [3.2 Functions with return values](#functions-with-return-values)
+- [4 Control Flow](#control-flow)
+  - [4.1 `If` Expressions](#if-expressions)
+    - [4.1.1 Using if in a `let` statement](#using-if-in-a-let-statement)
+  - [4.2 Repetition with Loops](#repetition-with-loops)
+    - [4.2.1 loop](#loop)
+    - [4.2.2 while](#while)
+    - [4.2.3 for](#for)
 
 ## Variables and Mutability
 
@@ -256,3 +263,121 @@ This expression:
 
 Functions can return values to the code that calls them. We don’t name return values, but we do declare their type after an `arrow (->)`.
 You can return early from a function by using the `return` keyword and specifying a value, but most functions return the last expression implicitly.
+
+## Control Flow
+
+#### If expressions
+
+```rust
+fn main() {
+    let number = 3;
+
+    if number < 2 {
+        println!("condition was true");
+    } else {
+        println!("condition was false");
+    }
+}
+```
+
+`Rust will not automatically try to convert non-Boolean types to a Boolean. You must be explicit and always provide if with a Boolean as its condition.`
+
+###### else-if
+
+```rust
+fn main() {
+    let number = 6;
+
+    if number % 4 == 0 {
+        println!("number is divisible by 4");
+    } else if number % 3 == 0 {
+        println!("number is divisible by 3");
+    } else if number % 2 == 0 {
+        println!("number is divisible by 2");
+    } else {
+        println!("number is not divisible by 4, 3, or 2");
+    }
+}
+```
+
+##### Using if in a let Statement
+
+Because `if` is an expression, we can use it on the right side of a `let` statement.
+
+```rust
+fn main() {
+    let condition = true;
+    let number = if condition {
+        5
+    } else {
+        6
+    };
+
+    println!("The value of number is: {}", number);
+}
+```
+
+#### Repetition with Loops
+
+It’s often useful to execute a block of code more than once. For this task, Rust provides several loops.
+Rust has three kinds of loops:
+
+1. loop
+2. while
+3. for
+
+##### loop
+
+The loop keyword tells Rust to execute a block of code over and over again forever or until you explicitly tell it to stop.
+Rust provides another, more reliable way to break out of a loop. You can place the break keyword within the loop to tell the program when to stop executing the loop.
+
+###### Returning values from loop
+
+One of the uses of a loop is to retry an operation you know might fail, such as checking whether a thread has completed its job. However, you might need to pass the result of that operation to the rest of your code.
+
+```rust
+fn main() {
+    let mut counter = 0;
+
+    let result = loop {
+        counter += 1;
+
+        if counter == 10 {
+            break counter * 2;
+        }
+    };
+
+    println!("The result is {}", result);
+}
+```
+
+##### while
+
+While the condition is true, the loop runs. When the condition ceases to be true, the program calls `break`, stopping the loop.
+
+```rust
+fn main() {
+    let a = [10, 20, 30, 40, 50];
+    let mut index = 0;
+
+    while index < 5 {
+        println!("the value is: {}", a[index]);
+
+        index += 1;
+    }
+}
+```
+
+##### for
+
+You can use a for loop and execute some code for each item in a collection.
+
+```rust
+fn main() {
+    let a = [10, 20, 30, 40, 50];
+
+    for element in a.iter() {
+        println!("the value is: {}", element);
+    }
+}
+```
