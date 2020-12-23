@@ -131,6 +131,16 @@ The `isize` and `usize` types depend on the kind of computer your program is run
 You can write integer literals in any of the forms including `Decimal`, `Hex`, `Octal`, `Binary` and `Byte(u8 only)`
 **Default is `i32`**
 
+| Number Literals |    Example    |
+| --------------- | :-----------: |
+| Decimal         |   `98_222`    |
+| Hex             |    `0xff`     |
+| Octal           |    `0o77`     |
+| Binary          | `0b1111_0000` |
+| Byte (u8 only)  |    `b'A'`     |
+|                 |               |
+|                 |               |
+
 ##### Floating point types
 
 Rust also has two primitive types for floating-point numbers, which are numbers with decimal points.Rust’s floating-point types are `f32` and `f64`, which are `32 bits` and `64 bits` in size, respectively. **default is f64**
